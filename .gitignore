@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+
+# Data — raw files are re-downloadable; don't bloat the repo
+data/raw/*.csv
+data/raw/*.xlsx
+data/raw/*.json
+data/processed/*.parquet
+data/processed/*.csv
+ingestion/cache/*
+!ingestion/cache/.gitkeep
+
+# DuckDB warehouse file
+*.duckdb
+*.duckdb.wal
+
+# dbt
+dbt_project/target/
+dbt_project/dbt_packages/
+dbt_project/logs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+*.env
+
+# Power BI temp
+*.pbix.tmp

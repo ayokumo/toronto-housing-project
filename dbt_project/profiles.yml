@@ -1,0 +1,21 @@
+# dbt profile for local development with DuckDB
+#
+# WHY DUCKDB LOCALLY:
+#   - Zero infrastructure: no server, no credentials, no cloud costs
+#   - Fast iteration: sub-second queries on datasets this size
+#   - Same SQL semantics: DuckDB supports window functions, CTEs, and
+#     analytical SQL that transfers directly to Snowflake/BigQuery
+#
+# HOW THIS PORTS TO CLOUD:
+#   - Snowflake: swap adapter to dbt-snowflake, update profile with
+#     account/warehouse/database/schema, keep all model SQL identical
+#   - BigQuery: swap to dbt-bigquery, add project/dataset config
+#   - The SQL in /models/ doesn't change — that's the whole point of dbt
+#
+toronto_housing:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: '../data/toronto_housing.duckdb'
+      threads: 4
