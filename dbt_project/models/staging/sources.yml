@@ -1,0 +1,76 @@
+version: 2
+
+sources:
+  - name: raw
+    description: "Raw tables loaded directly from ingestion scripts into DuckDB"
+    schema: main
+    tables:
+      - name: raw_shelter_occupancy_legacy
+        description: "Daily shelter occupancy 2017-2020, legacy schema"
+        columns:
+          - name: OCCUPANCY_DATE
+            description: "Date of occupancy snapshot (4am)"
+          - name: ORGANIZATION_NAME
+            description: "Organization operating the shelter"
+          - name: SHELTER_NAME
+            description: "Name of the shelter"
+          - name: PROGRAM_NAME
+            description: "Specific program within shelter"
+          - name: SECTOR
+            description: "Population served: Men, Women, Youth, Families, Co-ed"
+          - name: OCCUPANCY
+            description: "Number of beds/rooms occupied"
+          - name: CAPACITY
+            description: "Funded capacity (beds or rooms)"
+
+      - name: raw_shelter_occupancy
+        description: "Daily shelter occupancy 2021-present, current schema"
+        columns:
+          - name: OCCUPANCY_DATE
+            description: "Date of occupancy snapshot (4am)"
+          - name: ORGANIZATION_NAME
+            description: "Organization operating the shelter"
+          - name: LOCATION_NAME
+            description: "Name of the shelter location"
+          - name: PROGRAM_NAME
+            description: "Specific program within shelter"
+          - name: SECTOR
+            description: "Population served: Men, Women, Youth, Families, Co-ed"
+          - name: CAPACITY_TYPE
+            description: "Whether capacity is measured in Bed or Room"
+          - name: CAPACITY_ACTUAL_BED
+            description: "Actual operational bed capacity"
+          - name: OCCUPIED_BEDS
+            description: "Number of beds occupied"
+          - name: CAPACITY_ACTUAL_ROOM
+            description: "Actual operational room capacity"
+          - name: OCCUPIED_ROOMS
+            description: "Number of rooms occupied"
+          - name: OCCUPANCY_RATE_BEDS
+            description: "Pre-calculated bed occupancy rate"
+          - name: OCCUPANCY_RATE_ROOMS
+            description: "Pre-calculated room occupancy rate"
+
+      - name: raw_boc_interest_rates
+        description: "Bank of Canada target overnight rate, daily"
+        columns:
+          - name: date
+            description: "Date of observation"
+          - name: policy_rate
+            description: "Target overnight rate (%)"
+
+      - name: raw_weather_daily
+        description: "Environment Canada daily weather, Toronto Pearson"
+        columns:
+          - name: Date/Time
+            description: "Date of observation"
+          - name: Mean Temp (°C)
+            description: "Daily mean temperature"
+          - name: Max Temp (°C)
+            description: "Daily maximum temperature"
+          - name: Min Temp (°C)
+            description: "Daily minimum temperature"
+          - name: Total Precip (mm)
+            description: "Total precipitation"
+          - name: Total Snow (cm)
+            description: "Total snowfall"
