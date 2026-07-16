@@ -1,0 +1,84 @@
+version: 2
+
+models:
+  - name: stg_shelter_legacy
+    description: "Cleaned legacy shelter occupancy data 2017-2020"
+    columns:
+      - name: occupancy_date
+        description: "Date of the 4am occupancy snapshot"
+        data_tests:
+          - not_null
+      - name: sector
+        description: "Population served"
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['MEN', 'WOMEN', 'YOUTH', 'FAMILIES', 'CO-ED', 'MIXED ADULT']
+      - name: occupancy
+        description: "Number of beds/rooms occupied"
+        data_tests:
+          - not_null
+      - name: capacity_funding
+        description: "Funded capacity — 343 rows null in source, no test applied"
+
+  - name: stg_shelter_current
+    description: "Cleaned current shelter occupancy data 2021-present"
+    columns:
+      - name: occupancy_date
+        description: "Date of the 4am occupancy snapshot"
+        data_tests:
+          - not_null
+      - name: organization_name
+        description: "Organization operating the shelter"
+        data_tests:
+          - not_null
+      - name: sector
+        description: "Population served"
+        data_tests:
+          - not_null
+      - name: capacity_type
+        description: "Bed or Room based capacity"
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['Bed Based Capacity', 'Room Based Capacity']
+
+  - name: stg_shelter_unified
+    description: "Union of legacy and current shelter data 2017-present"
+    columns:
+      - name: occupancy_date
+        description: "Date of the 4am occupancy snapshot"
+        data_tests:
+          - not_null
+      - name: occupancy
+        description: "Number of beds/rooms occupied"
+        data_tests:
+          - not_null
+      - name: data_schema_version
+        description: "Which schema this row came from"
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['legacy', 'current']
+
+  - name: stg_boc_rates
+    description: "Bank of Canada policy rate, daily"
+    columns:
+      - name: rate_date
+        description: "Date of observation"
+        data_tests:
+          - not_null
+          - unique
+      - name: policy_rate
+        description: "Target overnight rate (%)"
+        data_tests:
+          - not_null
+
+  - name: stg_weather
+    description: "Daily weather for Toronto Pearson 2017-present"
+    columns:
+      - name: weather_date
+        description: "Date of observation"
+        data_tests:
+          - not_null
+          - unique
