@@ -150,6 +150,7 @@ def ingest_current_shelter_data() -> pd.DataFrame:
             df = pd.concat(resource_frames, ignore_index=True)
             if "_id" in df.columns:
                 df = df.drop(columns=["_id"])
+            df = fix_short_year_dates(df)
             all_frames.append(df)
             logger.info(f"  Resource {rid}: {len(df):,} rows")
 
@@ -196,3 +197,25 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def fix_short_year_dates(df: pd.DataFrame, col: str = "OCCUPANCY_DATE") -> pd.DataFrame:
+    """
+    Fix 2-digit year dates returned by CKAN for 2021-2022 resources.
+    e.g. "21-01-15T00:00:00" -> "2021-01-15"
+         "22-06-30"          -> "2022-06-30"
+    """
+    import re
+    def _fix(val):
+        if pd.isna(val):
+            return val
+        s = str(val).strip()
+        # Match YY-MM-DD with optional time component
+        m = re.match(r'^(\d{2})-(\d{2})-(\d{2})', s)
+        if m and int(m.group(1)) < 100:
+            year_2d = int(m.group(1))
+            full_year = 2000 + year_2d
+            return f"{full_year}-{m.group(2)}-{m.group(3)}"
+        return s
+    df[col] = df[col].apply(_fix)
+    return df
