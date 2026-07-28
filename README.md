@@ -57,15 +57,27 @@ All public, all verified, all documented in docs/data_sources.md.
 ### 1. System Saturation
 Toronto shelter system has operated at **97-99% occupancy** every week since 2022. Multiple programs have been at **100% capacity every single day** for 4 consecutive years.
 
+![Annual Occupancy Trend](analysis/outputs/annual_occupancy_trend.png)
+
+![Most Stressed Shelters](analysis/outputs/most_stressed_shelters.png)
+
 ### 2. Macro-Financial Transmission
 The Bank of Canada policy rate shows a **+0.64 percentage point** increase in shelter occupancy per 1% rate hike, with a 6-month lag (p=0.059). This is the expected direction from housing affordability theory: rate increases lead to higher mortgage/rent costs lead to increased housing stress.
 
 **Causal caveat:** This is a correlation in an observational study. Rate hikes coincided with post-COVID housing market stress — we cannot isolate the rate effect from other simultaneous changes. Documented honestly throughout.
 
+![Regression Fit](analysis/outputs/regression_fit.png)
+
+![Regression Coefficients](analysis/outputs/regression_coefficients.png)
+
 ### 3. Forecasting at Saturation
 The naive baseline (forecast = last weeks value) beats SARIMA and Prophet because the system is **pinned at its capacity ceiling**. The series barely moves — MAPE of 0.32% means we are off by less than a third of a percentage point.
 
 **Finance analogy:** A portfolio running at its risk limit is highly predictable day-to-day but has zero buffer for shocks. The forecast tells you the system is stable; the lack of slack tells you it is fragile.
+
+![Forecast Model Comparison](forecasting/evaluation/forecast_model_comparison.png)
+
+![Final Forecast](forecasting/evaluation/final_forecast.png)
 
 ---
 
