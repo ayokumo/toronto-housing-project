@@ -1,0 +1,2 @@
+# Mark generated HTML reports so GitHub language stats reflect the Python and SQL code
+*.html linguist-generated
