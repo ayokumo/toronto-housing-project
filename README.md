@@ -135,5 +135,5 @@ Every number in this project traces to docs/metric_definitions.md. Key metrics:
 
 ## Author
 
-**Ayokunmi Lawal** — York University, Data Science (Honours) + Finance Minor
+**Ayokunmi Lawal**, York University, Data Science
 [GitHub](https://github.com/ayokumo)
