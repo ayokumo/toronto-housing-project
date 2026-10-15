@@ -133,6 +133,12 @@ Every number in this project traces to docs/metric_definitions.md. Key metrics:
 
 ---
 
+## Related project
+
+[Toronto Shelter Overdose Spatial Analysis](https://github.com/ayokumo/toronto-overdose-spatial) is a companion analysis of overdose incidents in the same shelter system. It covers spatial regression across Toronto's 158 neighbourhoods and a cluster analysis of incident locations.
+
+---
+
 ## Author
 
 **Ayokunmi Lawal**, York University, Data Science
