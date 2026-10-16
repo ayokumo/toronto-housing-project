@@ -73,3 +73,11 @@ dashboard, notebook, or API response, it must trace back to this document.
 - **Daily → Monthly:** Calendar month mean
 - **Program → Location:** Sum of occupancy, sum of capacity, then compute rate
 - **Location → System:** Same: sum up, then divide (never average the rates)
+
+---
+
+## Forecast Error
+
+- **MAE (percentage points):** mean of absolute differences between forecast and actual system occupancy rate. This is the only error metric reported in the README.
+- **Change vs naive:** (MAE of model minus MAE of naive) divided by MAE of naive, times 100. Negative means the model is better.
+- **Naive:** forecast equals the last observed value.
